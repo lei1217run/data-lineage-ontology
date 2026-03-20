@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+*.pyo
+
+.idea/
+.vscode/
+
+.venv/
+venv/
+env/
+
+.DS_Store
+
+# Local ontology data and DBs
+memory/ontology/graph.jsonl
+memory/ontology/schema.yaml
+memory/ontology/*.db
+
+# Environment and local config
+.env
+

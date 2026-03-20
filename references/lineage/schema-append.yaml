@@ -1,0 +1,44 @@
+types:
+  Table:
+    required: [name, database]
+    properties:
+      schema: string
+      description: string
+      owner: string
+  Column:
+    required: [name, table_id]
+    properties:
+      data_type: string
+      is_primary_key: boolean
+      description: string
+  Metric:
+    required: [name, expression]
+    properties:
+      unit: string
+      owner: string
+      description: string
+  Dimension:
+    required: [name, table_id]
+    properties:
+      type: string
+      description: string
+
+relations:
+  has_column:
+    from_types: [Table]
+    to_types: [Column]
+    cardinality: one_to_many
+  depends_on:
+    from_types: [Metric, Table]
+    to_types: [Table, Metric, Dimension]
+    cardinality: many_to_many
+    acyclic: true
+  derives_from:
+    from_types: [Metric]
+    to_types: [Metric]
+    cardinality: many_to_many
+    acyclic: true
+  references_dimension:
+    from_types: [Metric]
+    to_types: [Dimension]
+    cardinality: many_to_many
